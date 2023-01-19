@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+//==
+//==
+// ЦЕ ТЕХНІЧНИЙ ФАЙЛ В ЯКОМУ ВСЕ ПІДКЛЮЧАЄТЬСЯ ТА ГЕНЕРУЄТСЬЯ
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// імпортуємо потрібні технології
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+// імпортуємо наш додаток
+import App from "./App";
+
+// імпортуємо потрібні css стилі
+import "./style.css";
+import "./main.css";
+
+// генеруємо наше ядро додатку
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+// рендеримо (вставляємо) наш додаток в ядро
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
