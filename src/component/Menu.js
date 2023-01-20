@@ -1,23 +1,23 @@
 import styled from "styled-components";
 
 export default function Menu({ config }) {
-    return (
-        <MenuBlock>
-            {/* в config нам приходить список кнопок
+  return (
+    <MenuBlock>
+      {/* в config нам приходить список кнопок
         за допомогою .map() ми для кожної кнопки
         виводимо HTML верстку
       */}
-            {config.map((menu) => (
-                <ButtonSendBlock onClick={menu.onClick}>
-                    <ButtonSendIcon>
-                        {/* тут ми підгружаємо зображення, задаємо ширину та висоту */}
-                        <img src={menu.img} width="30px" height="30px" />
-                    </ButtonSendIcon>
-                    <ButtonSendText>{menu.name}</ButtonSendText>
-                </ButtonSendBlock>
-            ))}
-        </MenuBlock>
-    );
+      {config.map((menu) => (
+        <ButtonSendBlock onClick={menu.onClick}>
+          <ButtonSendIcon>
+            {/* тут ми підгружаємо зображення, задаємо ширину та висоту */}
+            <img src={menu.img} alt={menu.title} width="30px" height="30px" />
+          </ButtonSendIcon>
+          <ButtonSendText>{menu.name}</ButtonSendText>
+        </ButtonSendBlock>
+      ))}
+    </MenuBlock>
+  );
 }
 
 const ButtonSendBlock = styled.button`

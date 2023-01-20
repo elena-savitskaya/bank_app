@@ -13,6 +13,9 @@ import Payment from "./component/Payment";
 const START_BALANCE = 10000;
 const LIMIT_BALANCE = 100000;
 const GET_MONEY = 100;
+const SALARY_AMOUNT = 1000;
+const COURSE_PRICE = 850;
+
 
 export default function App() {
   // ФУНКЦІОНАЛ БАЛАНСУ ========================
@@ -40,6 +43,37 @@ export default function App() {
     // Сюди записуються змінні при оновленні яких буде виконуватися функція
   }, [balance]);
 
+
+  // ФУНКЦІОНАЛ ТРАНЗАКЦІЙ =======================================
+
+  const [payment, setPayment] = React.useState([]);
+  const getSalary = () => {
+    setBalance(balance + SALARY_AMOUNT)
+
+    setPayment([
+      {
+        name: 'Зарплата',
+        amount: SALARY_AMOUNT,
+        type: "+"
+      },
+      ...payment,
+    ])
+  }
+
+  const buyCourse = () => {
+    setBalance(balance - COURSE_PRICE)
+
+    setPayment([
+      {
+        name: 'Оплата курсу',
+        amount: COURSE_PRICE,
+        type: "-"
+      },
+      ...payment,
+    ])
+  }
+
+
   // ВЕРСТКА ІНТЕРФЕЙСУ ==========================================
 
   // ця функція відкриває вікно в браузері з текстом
@@ -66,13 +100,23 @@ export default function App() {
             name: "Поповнити баланс",
             onClick: getMoney,
             img: "/icon/get.svg"
+          },
+          {
+            name: "Oтримати зарплату",
+            onClick: getSalary,
+            img: "/icon/send.svg"
+          },
+          {
+            name: "Купити курс",
+            onClick: buyCourse,
+            img: "/icon/payment.svg"
           }
         ]}
       />
       {/* компонент списка наших транзакцій
           цей функціонал ми будемо робити на 3 уроці
       */}
-      <Payment payment={[]} />
+      <Payment payment={payment} />
     </Page>
   );
 }

@@ -1,37 +1,37 @@
 import styled, { css } from "styled-components";
 
 export default function Payment({ payment }) {
-    // якщо в нас список платежів має
-    // кількість (на англ length) = 0
-    // то тоді ми виводимо іншу верстку
-    if (payment.length === 0) {
-        return (
-            <PaymentList>
-                <Empty>Немає транзакцій</Empty>
-            </PaymentList>
-        );
-    }
-    // тут ми виводимо верстку блока всіх платежів
-    // та за допомогою функції .map() яка приймає тег
-    // ми для кожного платежу виводимо верстку
-    return <PaymentList>{payment.map(PaymentItem)}</PaymentList>;
+  // якщо в нас список платежів має
+  // кількість (на англ length) = 0
+  // то тоді ми виводимо іншу верстку
+  if (payment.length === 0) {
+    return (
+      <PaymentList>
+        <Empty>Немає транзакцій</Empty>
+      </PaymentList>
+    );
+  }
+  // тут ми виводимо верстку блока всіх платежів
+  // та за допомогою функції .map() яка приймає тег
+  // ми для кожного платежу виводимо верстку
+  return <PaymentList>{payment.map(PaymentItem)}</PaymentList>;
 }
 
 // ось сама верстка одного платежу
 function PaymentItem({ name, amount, type }) {
-    return (
-        <PaymentBlock>
-            <PaymentIcon>
-                <img src="/icon/payment.svg" width="30px" height="30px" />
-            </PaymentIcon>
-            <PaymentText>{name}</PaymentText>
-            {/* ось тут ми передаємо параметр type в наш тег */}
-            {/* який відповідає за тип нашої платіжки (поповненя чи оплата) */}
-            <PaymentAmount type={type}>
-                {type}${amount}
-            </PaymentAmount>
-        </PaymentBlock>
-    );
+  return (
+    <PaymentBlock>
+      <PaymentIcon>
+        <img src="/icon/payment.svg" alt='payment' width="30px" height="30px" />
+      </PaymentIcon>
+      <PaymentText>{name}</PaymentText>
+      {/* ось тут ми передаємо параметр type в наш тег */}
+      {/* який відповідає за тип нашої платіжки (поповненя чи оплата) */}
+      <PaymentAmount type={type}>
+        {type}${amount}
+      </PaymentAmount>
+    </PaymentBlock>
+  );
 }
 
 // дизайн для тексту "Немає транзакцій"
@@ -62,27 +62,27 @@ const PaymentAmount = styled.div`
   /* змінювати колір тексту */
 
   ${({ type }) => {
-        if (type === "+")
-            return css`
+    if (type === "+")
+      return css`
         color: green;
       `;
 
-        if (type === "-")
-            return css`
+    if (type === "-")
+      return css`
         color: red;
       `;
 
-        // if (type === "*")
-        //   return css`
-        //     color: blue;
-        //   `;
+    if (type === "*")
+      return css`
+            color: blue;
+          `;
 
-        // якщо ніякий if() не виконався
-        // то буде повертатися цей колір #fff
-        return css`
+    // якщо ніякий if() не виконався
+    // то буде повертатися цей колір #fff
+    return css`
       color: #fff;
     `;
-    }};
+  }};
 `;
 
 const PaymentIcon = styled.div`
