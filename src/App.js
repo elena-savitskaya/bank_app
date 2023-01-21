@@ -1,7 +1,5 @@
-// ІМПОРТУЄМО БІБЛІОТЕКИ БЕЗ ЯКИХ НЕ МОЖЕМО ПИСАТИ КОД
 import React from "react";
-
-// ІМПОРТУЄМО ПОТРІБНІ КОМПОНЕНТИ
+import styled from "styled-components";
 import Page from "./component/Page";
 import Header from "./component/Header";
 import Balance from "./component/Balance";
@@ -21,7 +19,6 @@ export default function App() {
   // ФУНКЦІОНАЛ БАЛАНСУ ========================
 
   // Ось тут тримаємо актуальне значення балансу
-
   const [balance, setBalance] = React.useState(START_BALANCE);
 
   // Функція для прямого поповнення балансу
@@ -73,28 +70,38 @@ export default function App() {
     ])
   }
 
-
   // ВЕРСТКА ІНТЕРФЕЙСУ ==========================================
 
-  // ця функція відкриває вікно в браузері з текстом
-  const HelloWorld = () => alert("Hello world!");
+  const LOGIN = 'savitska';
+  const PASSWORD = '1234';
+
+  const [isLogged, setLogged] = React.useState(false)
+
+  const doLogin = () => {
+    const login = prompt('Ваш логін');
+    const password = prompt('Ваш пароль');
+
+    if (login === LOGIN && password === PASSWORD) {
+      alert('Вхід успішний')
+      setLogged(true)
+    } else {
+      if (login !== LOGIN && password !== PASSWORD) {
+        return alert('Помилка в логіні та паролі')
+      }
+      if (login !== LOGIN) {
+        return alert('Логін не вірний')
+      }
+      if (password !== PASSWORD) {
+        return alert('Пароль не вірний')
+      }
+    }
+  };
 
   return (
     <Page>
-      {/* компонент шапки з нашою назвою
-          також при кліку мишкою на шапку
-          в нас визивається функція HelloWorld
-      */}
-
-      <Header name="SAV-BANK" onClick={HelloWorld} />
-
-      {/* Компонент баланса в який передається
-          Актуальне значення балансу  */}
-      <Balance balance={balance} />
-
-      {/* Компонент меню з кнопками */}
-      <Menu
-        // ось сюди ми передаємо конфігурацію кнопок
+      <Header name="MY-BANK" onClick={doLogin} />
+      {isLogged && <Balance balance={balance} />}
+      {isLogged && <Menu
         config={[
           {
             name: "Поповнити баланс",
@@ -112,11 +119,21 @@ export default function App() {
             img: "/icon/payment.svg"
           }
         ]}
-      />
-      {/* компонент списка наших транзакцій
-          цей функціонал ми будемо робити на 3 уроці
-      */}
-      <Payment payment={payment} />
+      />}
+      {isLogged && <Payment payment={payment} />}
+      {isLogged === false && (
+        <NotLogged>Вам потрібно увійтив акаунт</NotLogged>
+      )}
     </Page>
   );
 }
+
+const NotLogged = styled.div`
+  padding: 100px 30px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  margin-top: 100px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+`
