@@ -4,9 +4,9 @@ export default function Menu({ config }) {
   return (
     <MenuBlock>
       {config.map((menu) => (
-        <ButtonSendBlock onClick={menu.onClick}>
+        <ButtonSendBlock onClick={menu.onClick} key={menu.name}>
           <ButtonSendIcon>
-            <img src={menu.img} alt={menu.title} width="30px" height="30px" />
+            <img src={menu.img} alt={menu.name} width="30px" height="30px" />
           </ButtonSendIcon>
           <ButtonSendText>{menu.name}</ButtonSendText>
         </ButtonSendBlock>

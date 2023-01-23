@@ -19,7 +19,7 @@ export default function Payment({ payment }) {
 
 function PaymentItem({ name, amount, type }) {
   return (
-    <PaymentBlock>
+    <PaymentBlock key={name}>
       <PaymentIcon>
         <img src="/icon/payment.svg" alt='payment' width="30px" height="30px" />
       </PaymentIcon>
