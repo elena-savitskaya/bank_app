@@ -5,6 +5,10 @@ import Header from "./component/Header";
 import Balance from "./component/Balance";
 import Menu from "./component/Menu";
 import Payment from "./component/Payment";
+import get from "./icon/get.svg"
+import paymenti from "./icon/payment.svg"
+import send from "./icon/send.svg"
+
 
 // КОНФІГУРАЦІЯ ========================================
 
@@ -106,17 +110,17 @@ export default function App() {
           {
             name: "Поповнити баланс",
             onClick: getMoney,
-            img: "/icon/get.svg"
+            img: get,
           },
           {
             name: "Oтримати зарплату",
             onClick: getSalary,
-            img: "/icon/send.svg"
+            img: send,
           },
           {
             name: "Купити курс",
             onClick: buyCourse,
-            img: "/icon/payment.svg"
+            img: paymenti,
           }
         ]}
       />}
