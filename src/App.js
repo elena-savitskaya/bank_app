@@ -76,8 +76,8 @@ export default function App() {
 
   // ВЕРСТКА ІНТЕРФЕЙСУ ==========================================
 
-  const LOGIN = 'savitska';
-  const PASSWORD = '1234';
+  const LOGIN = 'Qwerty';
+  const PASSWORD = '123';
 
   const [isLogged, setLogged] = React.useState(false)
 
@@ -126,18 +126,17 @@ export default function App() {
       />}
       {isLogged && <Payment payment={payment} />}
       {isLogged === false && (
-        <NotLogged>Вам потрібно увійтив акаунт</NotLogged>
+        <NotLogged>Вам потрібно увійти в акаунт (LOGIN: Qwerty, PASSWORD: 123)</NotLogged>
       )}
     </Page>
   );
 }
 
 const NotLogged = styled.div`
-  padding: 100px 30px;
-  background: #000;
+  padding: 50px 30px;
+  background: #1e1e1e;
   color: #fff;
   text-align: center;
   margin-top: 100px;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+
 `
